@@ -1,0 +1,48 @@
+ import java.io.FileOutputStream;
+    import java.io.IOException;
+     
+    import com.itextpdf.text.BaseColor;
+    import com.itextpdf.text.Document;
+    import com.itextpdf.text.DocumentException;
+    import com.itextpdf.text.Font;
+    import com.itextpdf.text.PageSize;
+    import com.itextpdf.text.Paragraph;
+    import com.itextpdf.text.pdf.BaseFont;
+    import com.itextpdf.text.pdf.PdfPTable;
+    import com.itextpdf.text.pdf.PdfWriter;
+     
+    public class Generate_A_PDF2 {
+     
+            public static void main(String[] args) throws DocumentException, IOException {
+                    Document document = new Document();
+                    PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("E:\\Generate_A_PDF.pdf"));
+     
+                                    document.open();
+                                    PdfPTable table = new PdfPTable(4);
+                                    table.setWidthPercentage(100F);
+                                    table.getDefaultCell().setFixedHeight(150F);
+                                    BaseFont baseFont = BaseFont.createFont("arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                                    Font black = new Font(baseFont, 70F, 0, BaseColor.BLACK);
+                                    Font red = new Font(baseFont, 70F, 0, BaseColor.RED);
+                                    String face[] = new String[]{"2", "3", "4", "5", "6", "7", "8", "9", "10", "A", "J", "Q","K" };
+                                    String symbol[] = new String[]{"\u2665", "\u2660", "\u2666", "\u2663" };
+                                    String card;
+                                    String card1;
+                                    String card2;
+                                    String card3;
+                                    for (int i = 0; i < face.length; i++) {
+                                            card = face[i] + symbol[0];
+                                            table.addCell(new Paragraph(card, red));
+                                            card1 = face[i] + symbol[1];
+                                            table.addCell(new Paragraph(card1, black));
+                                            card2= face[i] + symbol[2];
+                                            table.addCell(new Paragraph(card2, red));
+                                            card3 = face[i] + symbol[3];
+                                            table.addCell(new Paragraph(card3, black));    
+                                    }
+                                    document.add(table);
+                                    document.close();
+                                    }
+     
+    }
+
